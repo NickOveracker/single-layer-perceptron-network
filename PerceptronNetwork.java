@@ -101,7 +101,7 @@ class PerceptronNetwork
 
         for(int neur = 0; neur < numNeurons; neur++)
         {
-            // Perform a dot product of the current row of the weight matrix
+            // Perform a dot product of the appropriate row of the weight matrix
             // with the input vector.
             dotProduct = 0;
             for(int p = 0; p < numInputs; p++)
@@ -144,23 +144,16 @@ class PerceptronNetwork
     {
         boolean noChanges = true;
         double dotProduct;
-        int output;
+        double[] output;
         int error; // error = expected output - actual output
 
-        // Go through every row of the weight matrix
+        // Go through every training vector
         for(int line = 0; line < trainingData.length; line++)
         {
+            output = classify(trainingData[line]);
             for(int neur = 0; neur < numNeurons; neur++)
             {
-                // Perform a dot product of the current row of the weight matrix
-                // with the input vector.
-                dotProduct = 0;
-                for(int p = 0; p < numInputs; p++)
-                {
-                    dotProduct += weights[neur][p] * trainingData[line][p];
-                }
-                output = dotProduct + biases[neur] >= 0 ? 1 : 0;
-                error = (int) trainingData[line][numInputs + neur] - output;
+                error = (int) trainingData[line][numInputs + neur] - (int) output[neur];
 
                 // Adjust weights of synapses as needed.
                 if(error != 0)
