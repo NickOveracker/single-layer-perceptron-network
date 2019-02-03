@@ -3,7 +3,7 @@ Not intended for serious use. I am following Hagan et al.'s "Neural Network Desi
 
 Single-layer perceptron network with supervised learning.
 
-USAGE: java PerceptronNetwork <numInputs> <numOutputs> <trainingFile> <inputFile>
+USAGE: java PerceptronNetwork [numInputs] [numOutputs] [trainingFile] [inputFile]
 
 Expected training input file format:
 -   First line: Integer denoting number of training vectors.
